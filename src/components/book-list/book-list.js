@@ -1,26 +1,30 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import BookListItem from "../book-list-item";
+import BookListItem from "../book-list-item"
+import { bindActionCreators } from 'redux';
 import withBookstoreService from "../hoc/with-bookstore-service";
-import { booksLoaded } from "../../actions";
+import { booksLoaded, booksRequested } from "../../actions";
 import Spinner from "../spinner";
 
 class BookList extends Component {
   async componentDidMount() {
-    const { bookstoreService, booksLoaded } = this.props;
+    const { bookstoreService, booksLoaded, booksRequested } = this.props;
 
-    // bookstoreService.getBooks()
-    //   .then((data) => {
-    //     booksLoaded(data)
-    //   })
+    booksRequested();
 
-    let user = await booksLoaded([data])
+    bookstoreService.getBooks()
+      .then((data) => {
+        booksLoaded(data)
+      })
+
+    // let data = await bookstoreService.getBooks()
+    // booksLoaded(data)
   }
 
   render() {
-    const { books, isLoading } = this.props;
+    const { books, loading } = this.props;
 
-    if(isLoading) {
+    if(loading) {
       return <Spinner/>
     }
 
@@ -40,17 +44,26 @@ class BookList extends Component {
   }
 }
 
-const mapStateToProps = ({ books, isLoading }) => ({
+const mapStateToProps = ({ books, loading }) => ({
   books,
-  isLoading
+  loading
 })
 
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     booksLoaded: (newBooks) => {
+//       dispatch(booksLoaded(newBooks))
+//     },
+//     booksRequested: () => {
+//       dispatch(booksRequested())
+//     }
+//   }
+// }
+
 const mapDispatchToProps = (dispatch) => {
-  return {
-    booksLoaded: (newBooks) => {
-      dispatch(booksLoaded(newBooks))
-    }
-  }
+  return bindActionCreators({
+    booksLoaded, booksRequested
+  }, dispatch)
 }
 
 export default withBookstoreService()(
