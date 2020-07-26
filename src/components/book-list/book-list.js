@@ -6,13 +6,15 @@ import { booksLoaded } from "../../actions";
 import Spinner from "../spinner";
 
 class BookList extends Component {
-  componentDidMount() {
-    const { bookstoreService, booksLoaded } = this.props
+  async componentDidMount() {
+    const { bookstoreService, booksLoaded } = this.props;
 
-    bookstoreService.getBooks()
-      .then((data) => {
-        booksLoaded(data)
-      })
+    // bookstoreService.getBooks()
+    //   .then((data) => {
+    //     booksLoaded(data)
+    //   })
+
+    let user = await booksLoaded([data])
   }
 
   render() {
