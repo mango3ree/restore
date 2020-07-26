@@ -1,9 +1,15 @@
 export default class BookstoreService {
+  data = [
+    { id: 1, title: 'Production', author: 'Susan Folwer' },
+    { id: 2, title: 'Deploy', author: 'Dan Woll' },
+    { id: 3, title: 'Start', author: 'Chuan Li' }
+  ];
+
   getBooks() {
-    return [
-      { id: 1, title: 'Production', author: 'Susan Folwer' },
-      { id: 2, title: 'Production1', author: 'Susan Folwer1' },
-      { id: 3, title: 'Production2', author: 'Susan Folwer2' }
-    ];
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(this.data)
+      }, 900);
+    })
   }
 }
