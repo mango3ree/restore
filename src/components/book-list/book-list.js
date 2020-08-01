@@ -31,14 +31,16 @@ class BookListContainer extends Component {
   }
 }
 
-const BookList = ({ books }) => {
+const BookList = ({ books, onAddedToCart }) => {
   return (
     <ul>
       {
         books.map((book) => {
           return (
             <li key={book.id}>
-              <BookListItem book={book}/>
+              <BookListItem book={book} onAddedToCart={() => {
+                onAddedToCart(book.id)
+              }}/>
             </li>
           )
         })
@@ -55,7 +57,10 @@ const mapStateToProps = ({ books, loading, error }) => ({
 
 const mapDispatchToProps = (dispatch, { bookstoreService }) => {
   return {
-    fetchBooks: fetchBooks(bookstoreService, dispatch)
+    fetchBooks: fetchBooks(bookstoreService, dispatch),
+    onAddedToCart:() => { 
+      console.log(object)
+    }
   }
 }
 

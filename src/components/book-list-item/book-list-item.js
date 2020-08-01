@@ -1,8 +1,8 @@
 import React, { Fragment } from 'react'
 import './book-list-item.css'
 
-const BookListItem = ({ book }) => {
-  const { title, author } = book;
+const BookListItem = ({ book, onAddedToCart }) => {
+  const { title, author, price } = book;
   return (
     <Fragment>
       <span>
@@ -11,6 +11,14 @@ const BookListItem = ({ book }) => {
       <span>
         {author}
       </span>
+      <span>
+        $ {price}
+      </span>
+      <button
+        onClick={onAddedToCart}
+      >
+        Add to cart
+      </button>
     </Fragment>
   )
 }
