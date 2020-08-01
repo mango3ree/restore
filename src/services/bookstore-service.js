@@ -1,8 +1,8 @@
 export default class BookstoreService {
   data = [
-    { id: 1, title: 'Production', author: 'Susan Folwer3' },
-    { id: 2, title: 'Deploy', author: 'Dan Woll2' },
-    { id: 3, title: 'Start', author: 'Chuan Li1' }
+    { id: 1, title: 'Production', author: 'Susan Folwer3', price: 40 },
+    { id: 2, title: 'Deploy', author: 'Dan Woll2', price: 50 },
+    { id: 3, title: 'Start', author: 'Chuan Li1', price: 10 }
   ];
 
   getBooks() {
