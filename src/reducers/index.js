@@ -80,6 +80,11 @@ const reducer = (state = initialState, action) => {
           ]
         }
       }
+
+    case 'BOOKS_REMOVED_FROM_CART':
+      return state;
+      case 'ALL_BOOKS_REMOVED_FROM_CART':
+      return state;
     default:
       return state;
   }
